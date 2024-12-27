@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     private ParticleSystem rightHandParticleSystem;
 
     private IInputProvider inputProvider;
+    private ColorSwatch colorSwatch = new ColorSwatch();
+    private Random random = new Random();
 
     void Start()
     {
@@ -58,5 +61,18 @@ public class GameManager : MonoBehaviour
         {
             rightHandParticleSystem.Emit(1);
         }
+
+        if (inputProvider.GetLeftController().IsColorChangePressed())
+        {
+            var main = leftHandParticleSystem.main;
+            main.startColor = colorSwatch.HexToColor(colorSwatch.colors[random.Next(colorSwatch.colors.Count)]);
+        }
+        
+        if (inputProvider.GetRightController().IsColorChangePressed())
+        {
+            var main = rightHandParticleSystem.main;
+            main.startColor = colorSwatch.HexToColor(colorSwatch.colors[random.Next(colorSwatch.colors.Count)]);
+        }
     }
+    
 }

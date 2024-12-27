@@ -14,4 +14,9 @@ public class VRControllerInput : MonoBehaviour, IControllerInput
     {
         return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controllerType);
     }
+
+    public bool IsColorChangePressed()
+    {
+        return OVRInput.Get(OVRInput.Button.One, controllerType);
+    }
 }

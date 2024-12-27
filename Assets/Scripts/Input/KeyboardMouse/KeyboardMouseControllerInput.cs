@@ -22,4 +22,16 @@ public class KeyboardMouseControllerInput : MonoBehaviour, IControllerInput
             return Mouse.current.rightButton.isPressed;
         }
     }
+
+    public bool IsColorChangePressed()
+    {
+        if (isLeftController)
+        {
+            return Input.GetKeyDown(KeyCode.Q);
+        }
+        else
+        {
+            return Input.GetKeyDown(KeyCode.E);
+        }
+    }
 }
